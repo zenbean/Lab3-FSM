@@ -1,8 +1,18 @@
 module f1_fsm (
-    input   logic       rst,
-    input   logic       en,
-    input   logic       clk,
-    output  logic [7:0] data_out
+    input   logic             rst,
+    input   logic   [15:0]    N,
+    input   logic             clk,
+    output  logic   [7:0]     data_out
+);
+
+logic en;
+
+clktick ticking_clk (
+    .en (1),
+    .rst (rst),
+    .clk (clk),
+    .N (N),
+    .tick (en)
 );
 
 typedef enum {S0, S1, S2, S3, S4, S5, S6, S7, S8} my_state;
